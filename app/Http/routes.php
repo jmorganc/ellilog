@@ -12,5 +12,9 @@
 */
 
 $app->get('/', function () use ($app) {
-    return $app->welcome();
+    if (view()->exists('testtest')) {
+        echo 'Yes, the view was found!<br/><br/>';
+        echo '<pre>';print_r(view('testtest'));
+    }
+    return view('testtest');
 });
