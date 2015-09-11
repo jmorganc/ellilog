@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace Ellilog\Jobs;
 
 use Illuminate\Bus\Queueable;
 

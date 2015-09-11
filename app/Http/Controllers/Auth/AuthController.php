@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace Ellilog\Http\Controllers\Auth;
 
-use App\User;
+use Ellilog\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use Ellilog\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 

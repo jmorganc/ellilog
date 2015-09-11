@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace Ellilog\Events;
 
 abstract class Event
 {

@@ -1,5 +1,5 @@
 suites:
     main:
-        namespace: App
-        psr4_prefix: App
+        namespace: Ellilog
+        psr4_prefix: Ellilog
         src_path: app

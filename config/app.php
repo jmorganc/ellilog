@@ -140,10 +140,10 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        Ellilog\Providers\AppServiceProvider::class,
+        Ellilog\Providers\AuthServiceProvider::class,
+        Ellilog\Providers\EventServiceProvider::class,
+        Ellilog\Providers\RouteServiceProvider::class,
 
     ],
 

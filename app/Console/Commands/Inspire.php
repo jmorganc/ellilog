@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace Ellilog\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Inspiring;
