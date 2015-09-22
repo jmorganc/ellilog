@@ -43,7 +43,7 @@ Route::get('/log', function () {
 
 
 Route::post('/log', function () {
-    $res = Requests::post('http://api.ellilog.com/api/v0/log', array(), app('request')->input());
+    $res = Requests::post('http://api.ellilog.com/api/v0/logs', array(), app('request')->input());
     if ($res->status_code === 200) {
         Session::flash('flashMessage_status', 'good');
         Session::flash('flashMessage', 'Log successfully saved');
