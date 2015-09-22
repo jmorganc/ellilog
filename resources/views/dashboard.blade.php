@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Ellilog - Dashboard</title>
-    </head>
-    <body>
-        <h1>Ellilog</h1>
-        <h2>Dashboard</h2>
+@extends('layouts.master')
+@section('title', 'Dashboard')
+@section('content')
         <h3>Log</h3>
 
         <form action="/log" method="POST">
@@ -48,5 +43,4 @@
 
             <p><input type="submit" name="submit" value="Submit" /></p>
         </form>
-    </body>
-</html>
+@stop
