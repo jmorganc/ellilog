@@ -17,22 +17,27 @@ Route::get('/', function () {
 
 
 Route::get('/log', function () {
-    $res = Requests::get('http://api.ellilog.com/api/v0/users?active=1', array('Accept' => 'application/json'));
+    $res = Requests::get('http://api.ellilog.dev/api/v0/users?active=1', array('Accept' => 'application/json'));
     $users = json_decode($res->body);
     $users = $users->data;
 
-    $res = Requests::get('http://api.ellilog.com/api/v0/babies?active=1&id=1', array('Accept' => 'application/json'));
+    $res = Requests::get('http://api.ellilog.dev/api/v0/babies?active=1&id=1', array('Accept' => 'application/json'));
     $babies = json_decode($res->body);
     $babies = $babies->data;
 
-    $res = Requests::get('http://api.ellilog.com/api/v0/things?active=1', array('Accept' => 'application/json'));
+    $res = Requests::get('http://api.ellilog.dev/api/v0/things?active=1', array('Accept' => 'application/json'));
     $things = json_decode($res->body);
     $things = $things->data;
 
     return view('dashboard', [
-        'data' => 'Here\'s some welcome data.',
         'users' => $users,
         'babies' => $babies,
         'things' => $things
     ]);
+});
+
+
+Route::post('/log', function () {
+    $res = Requests::post('http://api.ellilog.dev/api/v0/log', array(), app('request')->input());
+    return $res->body;
 });
