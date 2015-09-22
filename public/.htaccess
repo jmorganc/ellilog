@@ -13,4 +13,9 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+
+    AuthType Basic
+    AuthName "Please login"
+    AuthUserFile /var/www/ellilog/public/.htpasswd
+    Require valid-user
 </IfModule>
