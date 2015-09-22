@@ -6,6 +6,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <!-- Optional theme -->
         <link rel="stylesheet" href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css">
+        <link rel="stylesheet" href="{{URL::asset('ellilog.css')}}">
+        <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -16,7 +18,6 @@
     </head>
     <body>
         <div class="container">
-
             <div class="header clearfix">
                 <nav>
                     <ul class="nav nav-pills pull-right">
@@ -41,8 +42,6 @@
             </footer>
 
         </div> <!-- /container -->
-
-        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-        <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="{{URL::asset('ellilog.js')}}"></script>
     </body>
 </html>

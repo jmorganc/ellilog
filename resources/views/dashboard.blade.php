@@ -1,6 +1,9 @@
 @extends('layouts.master')
 @section('title', 'Dashboard')
 @section('content')
+        <?php if ($flashMessage) {
+            echo '<div id="flashMessage" class="' . $flashMessage_status . '">' . $flashMessage . '</div>';
+        } ?>
         <div class="row marketing">
             <div class="col-lg-6">
                 <h4>Log</h4>
@@ -30,13 +33,7 @@
                     </select>
                     </p>
 
-                    <p>
-                    Ounces: <select id="data_milk" name="data_milk">
-                        <?php foreach(range(1, 10) as $oz) {
-                            echo '<option value="' . $oz . '">' . $oz . '</option>';
-                        } ?>
-                    </select>
-                    </p>
+                    <p id="data_box"></p>
 
                     <p>Notes:<br/>
                     <textarea id="notes" name="notes"></textarea>

@@ -1,0 +1,14 @@
+div#flashMessage {
+    border: 1px solid #999;
+    padding: 10px 20px;
+    font-weight: bold;
+    text-align: center;
+}
+div#flashMessage.good {
+    border-color: #00FF00;
+    background-color: #CCFFCC;
+}
+div#flashMessage.bad {
+    border-color: #FF0000;
+    background-color: #FFCCCC;
+}

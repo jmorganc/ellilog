@@ -17,6 +17,9 @@ Route::get('/', function () {
 
 
 Route::get('/log', function () {
+    $flashMessage = Session::get('flashMessage');
+    $flashMessage_status = Session::get('flashMessage_status');
+
     $res = Requests::get('http://api.ellilog.dev/api/v0/users?active=1', array('Accept' => 'application/json'));
     $users = json_decode($res->body);
     $users = $users->data;
@@ -32,12 +35,22 @@ Route::get('/log', function () {
     return view('dashboard', [
         'users' => $users,
         'babies' => $babies,
-        'things' => $things
+        'things' => $things,
+        'flashMessage' => $flashMessage,
+        'flashMessage_status' => $flashMessage_status
     ]);
 });
 
 
 Route::post('/log', function () {
     $res = Requests::post('http://api.ellilog.dev/api/v0/log', array(), app('request')->input());
-    return $res->body;
+    if ($res->status_code === 200) {
+        Session::flash('flashMessage_status', 'good');
+        Session::flash('flashMessage', 'Log successfully saved');
+    } else {
+        Session::flash('flashMessage_status', 'bad');
+        Session::flash('flashMessage', 'Log could not be saved');
+    }
+    // return $res->status_code;
+    return redirect('/log');
 });
