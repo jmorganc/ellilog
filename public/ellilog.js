@@ -6,7 +6,7 @@ $('#thing_id').change(function() {
         $('#data_box').html(getDataMilk());
     }
     else if (thing === 'Nap') {
-        $('#data_box').html('Minutes: <input type="text" id="data" name="data" />');
+        $('#data_box').html('<label for="data">Minutes:</label><input type="text" id="data" name="data" class="form-control">');
     }
     else if (thing === 'Pee') {
         $('#data_box').html(getDataHidden());
@@ -21,7 +21,7 @@ function getDataHidden() {
 }
 
 function getDataMilk() {
-    return 'Ounces: <select id="data" name="data">'+
+    return '<label for="data">Ounces:</label><select id="data" name="data" class="form-control">'+
             '<option value="1">1</option>'+
             '<option value="2">2</option>'+
             '<option value="2">2</option>'+
