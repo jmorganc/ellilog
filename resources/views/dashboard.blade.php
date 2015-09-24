@@ -19,7 +19,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="baby_id">User:</label>
+                        <label for="baby_id">Baby:</label>
                         <select id="baby_id" name="baby_id" class="form-control">
                         <?php foreach($babies as $baby) { ?>
                             <option value="{{$baby->id}}">{{$baby->first_name}} {{$baby->last_name}}</option>
@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="thing_id">User:</label>
+                        <label for="thing_id">Thing:</label>
                         <select id="thing_id" name="thing_id" class="form-control">
                         <?php foreach($things as $thing) { ?>
                             <option value="{{$thing->thing}}">{{$thing->thing}}</option>
