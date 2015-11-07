@@ -34,10 +34,15 @@ Route::get('/log', function () {
     $things = json_decode($res->body);
     $things = $things->data;
 
+    $res = Requests::get('http://api.ellilog.com/api/v0/logs?baby_id=1', array('Accept' => 'application/json'));
+    $logs = json_decode($res->body);
+    $logs = $logs->data;
+
     return view('dashboard', [
         'users' => $users,
         'babies' => $babies,
         'things' => $things,
+        'logs' => $logs,
         'flashMessage' => $flashMessage,
         'flashMessage_status' => $flashMessage_status
     ]);

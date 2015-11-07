@@ -46,8 +46,20 @@
                 </form>
             </div>
 
-            <!-- <div class="col-lg-6">
-                Other side
-            </div> -->
+            <div class="col-lg-6">
+                <h3>Recent logs</h3>
+                <table class="table">
+                    <tr><th>Time</th><th>Thing</th><th>Data</th><th>Notes</th></tr>
+                <?php foreach($logs as $log) {
+                    $datetime = new DateTime($log->created_at);
+                    echo '<tr>';
+                    echo '<td>' . $datetime->format('g:i a') . '</td>';
+                    echo '<td>' . $log->thing_id . '</td>';
+                    echo '<td>' . $log->data . '</td>';
+                    echo '<td>' . $log->notes . '</td>';
+                    echo '</tr>';
+                } ?>
+                </table>
+            </div>
         </div>
 @stop
