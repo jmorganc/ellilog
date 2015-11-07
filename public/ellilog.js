@@ -22,6 +22,7 @@ function getDataHidden() {
 
 function getDataMilk() {
     return '<label for="data">Ounces:</label><select id="data" name="data" class="form-control">'+
+            '<option value="Add later">Add later</option>'+
             '<option value="1">1</option>'+
             '<option value="2">2</option>'+
             '<option value="2">2</option>'+
@@ -38,4 +39,11 @@ function getDataMilk() {
 
 $('#flashMessage').delay('5000').slideUp('slow', function() {
 // Animation complete.
+});
+
+
+$('tr.clickable').click( function() {
+    alert(this);
+}).hover( function() {
+    $(this).toggleClass('hover');
 });

@@ -12,3 +12,8 @@ div#flashMessage.bad {
     border-color: #FF0000;
     background-color: #FFCCCC;
 }
+
+tr.hover {
+    background-color: #eeffee;
+    cursor: pointer;
+}
