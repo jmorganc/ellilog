@@ -1,12 +1,12 @@
 @extends('layouts.master')
-@section('title', 'Dashboard')
+@section('title', 'Edit a log')
 @section('content')
         <?php if ($flashMessage) {
             echo '<div id="flashMessage" class="' . $flashMessage_status . '">' . $flashMessage . '</div>';
         } ?>
         <div class="row marketing">
             <div class="col-lg-6">
-                <h3>Log a thing</h3>
+                <h3>Edit a log</h3>
                 <form action="/log" method="POST">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                     <div class="form-group">
@@ -44,23 +44,6 @@
 
                     <input type="submit" name="submit" value="Submit" class="btn btn-primary" />
                 </form>
-            </div>
-
-            <div class="col-lg-6">
-                <h3>Recent logs</h3>
-                <table class="table">
-                    <tr><th></th><th>Time</th><th>Thing</th><th>Data</th><!-- <th>Notes</th> --></tr>
-                <?php foreach($logs as $log) {
-                    $datetime = new DateTime($log->created_at);
-                    echo '<tr class="clickable">';
-                    echo '<td><a href="/log/edit/' . $log->id . '"></a></td>';
-                    echo '<td>' . $datetime->format('g:i a') . '</td>';
-                    echo '<td>' . $log->thing_id . '</td>';
-                    echo '<td>' . $log->data . '</td>';
-                    //echo '<td>' . $log->notes . '</td>';
-                    echo '</a></tr>';
-                } ?>
-                </table>
             </div>
         </div>
 @stop

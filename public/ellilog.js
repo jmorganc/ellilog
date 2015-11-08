@@ -43,7 +43,7 @@ $('#flashMessage').delay('5000').slideUp('slow', function() {
 
 
 $('tr.clickable').click( function() {
-    alert(this);
+    window.location = $(this).find('a').attr('href');
 }).hover( function() {
     $(this).toggleClass('hover');
 });

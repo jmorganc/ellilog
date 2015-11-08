@@ -11,14 +11,14 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function() {
     return view('welcome');
 });
 
 Route::get('about', 'PagesController@about');
 Route::get('contact', 'PagesController@contact');
 
-Route::get('/log', function () {
+Route::get('/log', function() {
     $flashMessage = Session::get('flashMessage');
     $flashMessage_status = Session::get('flashMessage_status');
 
@@ -49,7 +49,7 @@ Route::get('/log', function () {
 });
 
 
-Route::post('/log', function () {
+Route::post('/log', function() {
     $res = Requests::post('http://api.ellilog.com/api/v0/logs', array(), app('request')->input());
     if ($res->status_code === 200) {
         Session::flash('flashMessage_status', 'good');
@@ -60,4 +60,35 @@ Route::post('/log', function () {
     }
     // return $res->status_code;
     return redirect('/log');
+});
+
+
+Route::get('/log/edit/{id}', function($id) {
+    $flashMessage = Session::get('flashMessage');
+    $flashMessage_status = Session::get('flashMessage_status');
+
+    $res = Requests::get('http://api.ellilog.com/api/v0/users?active=1', array('Accept' => 'application/json'));
+    $users = json_decode($res->body);
+    $users = $users->data;
+
+    $res = Requests::get('http://api.ellilog.com/api/v0/babies?active=1&id=1', array('Accept' => 'application/json'));
+    $babies = json_decode($res->body);
+    $babies = $babies->data;
+
+    $res = Requests::get('http://api.ellilog.com/api/v0/things?active=1', array('Accept' => 'application/json'));
+    $things = json_decode($res->body);
+    $things = $things->data;
+
+    $res = Requests::get('http://api.ellilog.com/api/v0/logs?id=' . $id, array('Accept' => 'application/json'));
+    $logs = json_decode($res->body);
+    $logs = $logs->data;
+
+    return view('edit', [
+        'users' => $users,
+        'babies' => $babies,
+        'things' => $things,
+        'logs' => $logs,
+        'flashMessage' => $flashMessage,
+        'flashMessage_status' => $flashMessage_status
+    ]);
 });
