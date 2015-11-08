@@ -4,7 +4,7 @@
         <div class="row marketing">
             <div class="col-lg-12">
                 <h3>Contact</h3>
-                <p>Contact that stud <a href="mailto:jmorgancampbell@gmail.com?suject=Ellilog Feedback">jmorgancampbell@gmail.com</a> if you need anything specific. I have no ownership or shares invested in these babies, so he's the one you want to talk to.</p>
+                <p>Email <a href="mailto:jmorgancampbell@gmail.com?subject=Ellilog Feedback">Morgan</a> with feedback of any kind.</p>
             </div>
 
             <!-- <div class="col-lg-6">
