@@ -66,6 +66,8 @@
                     echo '<td>';
                     if ($log->thing_id === 'Pee' || $log->thing_id === 'Poop' || $log->thing_id === 'Comment') {
                         echo $log->notes;
+                    } else if ($log->thing_id === 'Nurse') {
+                        echo '(show time elapsed since?';
                     } else {
                         echo $log->data;
                     }
