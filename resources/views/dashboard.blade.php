@@ -30,13 +30,20 @@
                     <div class="form-group">
                         <label for="thing_id">Thing:</label>
                         <select id="thing_id" name="thing_id" class="form-control">
-                        <?php foreach($things as $thing) { ?>
-                            <option value="{{$thing->thing}}">{{$thing->thing}}</option>
+                        <?php foreach($things as $thing) {
+                            $selected = '';
+                            if ($thing->thing === 'Milk') {
+                                $selected = ' selected="selected"';
+                            }
+                        ?>
+                            <option value="{{$thing->thing}}"<?php echo $selected; ?>>{{$thing->thing}}</option>
                         <?php } ?>
                         </select>
                     </div>
 
-                    <p id="data_box"></p>
+                    <p id="data_box">
+                        <input type="hidden" id="edit" value="false" />
+                    </p>
 
                     <label for="notes">Notes:</label>
                     <textarea id="notes" name="notes" class="form-control"></textarea>
@@ -49,7 +56,7 @@
             <div class="col-lg-6">
                 <h3>Recent logs</h3>
                 <table class="table">
-                    <tr><th></th><th>Time</th><th>Thing</th><th>Data/Note</th><!-- <th>Notes</th> --></tr>
+                    <tr><th></th><th>Time</th><th>Thing</th><th>Data/Note</th></tr>
                 <?php foreach($logs as $log) {
                     $datetime = new DateTime($log->created_at);
                     echo '<tr class="clickable">';
@@ -57,13 +64,12 @@
                     echo '<td>' . $datetime->format('g:i a') . '</td>';
                     echo '<td>' . $log->thing_id . '</td>';
                     echo '<td>';
-                    if ($log->thing_id === 'Pee' || $log->thing_id === 'Poop') {
+                    if ($log->thing_id === 'Pee' || $log->thing_id === 'Poop' || $log->thing_id === 'Comment') {
                         echo $log->notes;
                     } else {
                         echo $log->data;
                     }
                     echo '</td>';
-                    //echo '<td>' . $log->notes . '</td>';
                     echo '</a></tr>';
                 } ?>
                 </table>

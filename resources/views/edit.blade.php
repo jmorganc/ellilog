@@ -52,8 +52,10 @@
                     </div>
 
                     <p id="data_box">
+                        <input type="hidden" id="edit" value="true" />
                         <input type="hidden" id="thing" value="{{$logs->thing_id}}" />
                         <input type="hidden" id="data" value="{{$logs->data}}" />
+                        <input type="hidden" id="created_at" value="{{$logs->created_at}}" />
                     </p>
 
                     <label for="notes">Notes:</label>
