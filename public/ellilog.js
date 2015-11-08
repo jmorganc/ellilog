@@ -5,7 +5,7 @@ if ($('#edit').val() == 'false') {
     var data = $('#data').val();
     var created_at = $('#created_at').val();
 
-    if (thing === 'Nap') {
+    if (thing === 'Nap' || thing === 'Nurse') {
         var date = new Date();
         var year = date.getFullYear();
         var month = date.getMonth() + 1;
@@ -27,6 +27,22 @@ $('#thing_id').change(function() {
 function updateDatabox(thing, data, created_at) {
     if (thing === 'Bottle') {
         $('#data_box').html(getDataBottle(data));
+    }
+    else if (thing === 'Nurse') {
+        if (data === '') {
+            data = 'Edit this when finished nursing'
+        }
+        if (created_at === '') {
+            var date = new Date();
+            created_at = date.toLocaleTimeString();
+        }
+        $('#data_box').html(
+            '<label for="data">Start time:</label>'+
+            '<input readonly="readonly" type="text" id="start_time" name="start_time" value="' + created_at + '" class="form-control">'+
+            '<br/>'+
+            '<label for="data">End time:</label>'+
+            '<input type="text" id="data" name="data" value="' + data + '" class="form-control">'
+        );
     }
     else if (thing === 'Nap') {
         if (data === '') {
