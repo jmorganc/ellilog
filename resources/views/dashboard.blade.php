@@ -55,7 +55,7 @@
 
             <div class="col-lg-6">
                 <h3>Recent logs</h3>
-                <table class="table">
+                <table class="table-striped">
                     <tr><th></th><th>Time</th><th>Thing</th><th>Data/Note</th></tr>
                 <?php foreach($logs as $log) {
                     $datetime = new DateTime($log->created_at);
