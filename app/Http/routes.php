@@ -63,6 +63,20 @@ Route::post('/log', function() {
 });
 
 
+Route::post('/log/{id}', function($id) {
+    $res = Requests::post('http://api.ellilog.com/api/v0/logs/' . $id, array(), app('request')->input());
+
+    if ($res->status_code === 200) {
+        Session::flash('flashMessage_status', 'good');
+        Session::flash('flashMessage', 'Log successfully updated');
+    } else {        Session::flash('flashMessage_status', 'bad');
+        Session::flash('flashMessage', 'Log could not be updated');
+    }
+    // return $res->status_code;
+    return redirect('/log');
+});
+
+
 Route::get('/log/edit/{id}', function($id) {
     $flashMessage = Session::get('flashMessage');
     $flashMessage_status = Session::get('flashMessage_status');
@@ -87,7 +101,7 @@ Route::get('/log/edit/{id}', function($id) {
         'users' => $users,
         'babies' => $babies,
         'things' => $things,
-        'logs' => $logs,
+        'logs' => $logs[0],
         'flashMessage' => $flashMessage,
         'flashMessage_status' => $flashMessage_status
     ]);

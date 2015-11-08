@@ -49,14 +49,20 @@
             <div class="col-lg-6">
                 <h3>Recent logs</h3>
                 <table class="table">
-                    <tr><th></th><th>Time</th><th>Thing</th><th>Data</th><!-- <th>Notes</th> --></tr>
+                    <tr><th></th><th>Time</th><th>Thing</th><th>Data/Note</th><!-- <th>Notes</th> --></tr>
                 <?php foreach($logs as $log) {
                     $datetime = new DateTime($log->created_at);
                     echo '<tr class="clickable">';
                     echo '<td><a href="/log/edit/' . $log->id . '"></a></td>';
                     echo '<td>' . $datetime->format('g:i a') . '</td>';
                     echo '<td>' . $log->thing_id . '</td>';
-                    echo '<td>' . $log->data . '</td>';
+                    echo '<td>';
+                    if ($log->thing_id === 'Pee' || $log->thing_id === 'Poop') {
+                        echo $log->notes;
+                    } else {
+                        echo $log->data;
+                    }
+                    echo '</td>';
                     //echo '<td>' . $log->notes . '</td>';
                     echo '</a></tr>';
                 } ?>
