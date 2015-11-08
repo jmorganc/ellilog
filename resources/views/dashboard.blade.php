@@ -32,7 +32,7 @@
                         <select id="thing_id" name="thing_id" class="form-control">
                         <?php foreach($things as $thing) {
                             $selected = '';
-                            if ($thing->thing === 'Milk') {
+                            if ($thing->thing === 'Bottle') {
                                 $selected = ' selected="selected"';
                             }
                         ?>

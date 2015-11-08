@@ -1,5 +1,5 @@
 if ($('#edit').val() == 'false') {
-    $('#data_box').html(getDataMilk());
+    $('#data_box').html(getDataBottle(0));
 } else if ($('#edit').val() == 'true') {
     var thing = $('#thing').val();
     var data = $('#data').val();
@@ -25,8 +25,8 @@ $('#thing_id').change(function() {
 });
 
 function updateDatabox(thing, data, created_at) {
-    if (thing === 'Milk') {
-        $('#data_box').html(getDataMilk(data));
+    if (thing === 'Bottle') {
+        $('#data_box').html(getDataBottle(data));
     }
     else if (thing === 'Nap') {
         if (data === '') {
@@ -59,7 +59,7 @@ function getDataHidden() {
     return '<input type="hidden" id="data" name="data" value="-1" />';
 }
 
-function getDataMilk(ounces) {
+function getDataBottle(ounces) {
     var option_string = '<label for="data">Ounces:</label><select id="data" name="data" class="form-control">'+
             '<option value="Add later">Add later</option>';
     for (i = 1; i < 10; i++) {
