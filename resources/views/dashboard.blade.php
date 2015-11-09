@@ -59,6 +59,8 @@
                     <tr><th></th><th>Time</th><th>Thing</th><th>Data/Note</th></tr>
                 <?php foreach($logs as $log) {
                     $datetime = new DateTime($log->created_at);
+                    $datetime_now = new DateTime();
+                    $datetime_diff = $datetime_now->diff($datetime);
                     echo '<tr class="clickable">';
                     echo '<td><a href="/log/edit/' . $log->id . '"></a></td>';
                     echo '<td>' . $datetime->format('g:i a') . '</td>';
@@ -67,7 +69,7 @@
                     if ($log->thing_id === 'Pee' || $log->thing_id === 'Poop' || $log->thing_id === 'Comment') {
                         echo $log->notes;
                     } else if ($log->thing_id === 'Nurse') {
-                        echo '(show time elapsed since?';
+                        echo $datetime_diff->format('%h hours, %i minutes');
                     } else {
                         echo $log->data;
                     }
