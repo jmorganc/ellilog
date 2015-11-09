@@ -61,7 +61,7 @@
                     $datetime = new DateTime($log->created_at);
                     $datetime_now = new DateTime();
                     $datetime_diff = $datetime_now->diff($datetime);
-                    $datetime_diff = $datetime_diff->format('%h hours, %i minutes ago');
+                    $datetime_diff = $datetime_diff->format('%H:%I ago');
                     echo '<tr class="clickable">';
                     echo '<td><a href="/log/edit/' . $log->id . '"></a></td>';
                     echo '<td>' . $datetime->format('g:i a') . '</td>';
