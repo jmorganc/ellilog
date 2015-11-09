@@ -1,1 +1,2 @@
 # ellilog
+Log some things.
