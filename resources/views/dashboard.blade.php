@@ -56,7 +56,7 @@
             <div class="col-lg-6">
                 <h3>Recent logs</h3>
                 <table class="table table-striped">
-                    <tr><th></th><th>Time</th><th>Thing</th><th>Data/Note</th></tr>
+                    <tr><th></th><th>Time</th><th>Thing</th><th>Data/Note</th><th></th></tr>
                 <?php foreach($logs as $log) {
                     $datetime = new DateTime($log->created_at);
                     $datetime_now = new DateTime();
@@ -70,13 +70,12 @@
                     if ($log->thing_id === 'Pee' || $log->thing_id === 'Poop' || $log->thing_id === 'Comment') {
                         echo $log->notes;
                     } else if ($log->thing_id === 'Nurse') {
-                        echo $datetime_diff;
-                    } else if ($log->thing_id === 'Bottle') {
-                        echo $log->data . ', ' . $datetime_diff;
-                    }else {
+                        echo '';
+                    } else {
                         echo $log->data;
                     }
                     echo '</td>';
+                    echo '<td>' . $datetime_diff . '</td>';
                     echo '</a></tr>';
                 } ?>
                 </table>
