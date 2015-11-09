@@ -69,7 +69,7 @@
                     if ($log->thing_id === 'Pee' || $log->thing_id === 'Poop' || $log->thing_id === 'Comment') {
                         echo $log->notes;
                     } else if ($log->thing_id === 'Nurse') {
-                        echo $datetime_diff->format('%h hours, %i minutes');
+                        echo $datetime_diff->format('%h hours, %i minutes ago');
                     } else {
                         echo $log->data;
                     }
