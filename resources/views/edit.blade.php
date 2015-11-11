@@ -9,6 +9,18 @@
                 <h3>Edit a log</h3>
                 <form action="/log/{{$logs->id}}" method="POST">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
+
+                    <div class="form-group required">
+                        <p><label for="name">Name:</label>
+                        <input type="text" name="name" id="name" value="" class="form-control required"/></p>
+                        <p><label for="email">Email:</label>
+                        <input type="text" name="email" id="email" value="" class="form-control required"/></p>
+                        <p><label for="phone">Phone:</label>
+                        <input type="text" name="phone" id="phone" value="" class="form-control required"/></p>
+                        <p><label for="address">Address:</label>
+                        <input type="text" name="address" id="address" value="" class="form-control required"/></p>
+                    </div>
+
                     <div class="form-group">
                         <label for="user_id">User:</label>
                         <select id="user_id" name="user_id" class="form-control">
@@ -55,6 +67,7 @@
                         <input type="hidden" id="edit" value="true" />
                         <input type="hidden" id="thing" value="{{$logs->thing_id}}" />
                         <input type="hidden" id="data" value="{{$logs->data}}" />
+                        <input type="hidden" id="created_at" value="{{$logs->created_at}}" />
                     </p>
 
                     <label for="notes">Notes:</label>
@@ -62,6 +75,7 @@
                     </p>
 
                     <input type="submit" name="submit" value="Update" class="btn btn-primary" />
+                    <input type="submit" name="delete" value="Delete" class="btn btn-danger" />
                 </form>
             </div>
         </div>

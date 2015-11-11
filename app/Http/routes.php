@@ -50,8 +50,15 @@ Route::get('/log', function() {
 
 
 Route::post('/log', function() {
+    $honeypots = array('name', 'email', 'phone', 'address');
     $post_data = array();
     foreach (app('request')->input() as $key => $value) {
+        if (in_array($key, $honeypots)) {
+            if ($value !== '') {
+                exit();
+            }
+            continue;
+        }
         if ($key === 'data') {
             $post_data[$key] = json_encode($value);
         } else {
@@ -73,8 +80,15 @@ Route::post('/log', function() {
 
 
 Route::post('/log/{id}', function($id) {
+    $honeypots = array('name', 'email', 'phone', 'address');
     $post_data = array();
     foreach (app('request')->input() as $key => $value) {
+        if (in_array($key, $honeypots)) {
+            if ($value !== '') {
+                exit();
+            }
+            continue;
+        }
         if ($key === 'data') {
             $post_data[$key] = json_encode($value);
         } else {
