@@ -5,7 +5,7 @@
             echo '<div id="flashMessage" class="' . $flashMessage_status . '">' . $flashMessage . '</div>';
         } ?>
         <div class="row marketing">
-            <div class="col-lg-6">
+            <div class="col-sm-6">
                 <h3>Log a thing</h3>
                 <form action="/log" method="POST">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
@@ -66,7 +66,7 @@
                 </form>
             </div>
 
-            <div class="col-lg-6">
+            <div class="col-sm-6">
                 <h3>Recent logs</h3>
                 <table class="table table-striped">
                     <tr><th></th><th>Time</th><th>Thing</th><th>Data/Note</th><th></th></tr>
@@ -87,8 +87,6 @@
                     echo '<td>';
                     if ($log->thing_id === 'Pee' || $log->thing_id === 'Poop' || $log->thing_id === 'Comment' || $log->thing_id === 'Nurse') {
                         echo $log->notes;
-                    // } else if ($log->thing_id === 'Nurse') {
-                    //     echo '';
                     } else if ($log->thing_id === 'Nap') {
                         if ($log_data['end_time'] === 'Edit this on wake up') {
                             echo $log_data['end_time'];
