@@ -50,7 +50,16 @@ Route::get('/log', function() {
 
 
 Route::post('/log', function() {
-    $res = Requests::post('http://api.ellilog.com/api/v0/logs', array(), app('request')->input());
+    $post_data = array();
+    foreach (app('request')->input() as $key => $value) {
+        if ($key === 'data') {
+            $post_data[$key] = json_encode($value);
+        } else {
+            $post_data[$key] = $value;
+        }
+    }
+
+    $res = Requests::post('http://api.ellilog.com/api/v0/logs', array(), $post_data);
     if ($res->status_code === 200) {
         Session::flash('flashMessage_status', 'good');
         Session::flash('flashMessage', 'Log successfully saved');
@@ -64,12 +73,22 @@ Route::post('/log', function() {
 
 
 Route::post('/log/{id}', function($id) {
-    $res = Requests::post('http://api.ellilog.com/api/v0/logs/' . $id, array(), app('request')->input());
+    $post_data = array();
+    foreach (app('request')->input() as $key => $value) {
+        if ($key === 'data') {
+            $post_data[$key] = json_encode($value);
+        } else {
+            $post_data[$key] = $value;
+        }
+    }
+
+    $res = Requests::post('http://api.ellilog.com/api/v0/logs/' . $id, array(), $post_data);
 
     if ($res->status_code === 200) {
         Session::flash('flashMessage_status', 'good');
         Session::flash('flashMessage', 'Log successfully updated');
-    } else {        Session::flash('flashMessage_status', 'bad');
+    } else {
+        Session::flash('flashMessage_status', 'bad');
         Session::flash('flashMessage', 'Log could not be updated');
     }
     // return $res->status_code;

@@ -58,7 +58,12 @@
                 <table class="table table-striped">
                     <tr><th></th><th>Time</th><th>Thing</th><th>Data/Note</th><th></th></tr>
                 <?php foreach($logs as $log) {
-                    $datetime = new DateTime($log->created_at);
+                    $log_data = json_decode($log->data, TRUE);
+                    $start_time  = $log->created_at;
+                    if (array_key_exists('start_time', $log_data)) {
+                        $start_time  = $log_data['start_time'];
+                    }
+                    $datetime = new DateTime($start_time);
                     $datetime_now = new DateTime();
                     $datetime_diff = $datetime_now->diff($datetime);
                     $datetime_diff = $datetime_diff->format('%H:%I ago');

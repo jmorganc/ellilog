@@ -1,47 +1,46 @@
 if ($('#edit').val() == 'false') {
+    var data = [];
+    data['start_time'] = '';
+    data['end_time'] = '';
+    data['data'] = '';
     $('#data_box').html(getDataBottle(0));
 } else if ($('#edit').val() == 'true') {
     var thing = $('#thing').val();
-    var data = $('#data').val();
-    var created_at = $('#created_at').val();
+    data = JSON.parse($('#data').val());
 
     if (thing === 'Nap') {
-        var date = new Date();
-        var year = date.getFullYear();
-        var month = date.getMonth() + 1;
-        month = ('0' + month).slice(-2);
-        var day = ('0' + date.getDate()).slice(-2);
-        var hours = ('0' + date.getHours()).slice(-2);
-        var minutes = ('0' + date.getMinutes()).slice(-2);
-        var seconds = ('0' + date.getSeconds()).slice(-2);
-        data = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+        if (data['end_time'] === 'Edit this on wake up') {
+            data['end_time'] = makeDatetime();
+        }
     }
 
-    updateDatabox(thing, data, created_at);
+    updateDatabox(thing, data);
 }
 
 $('#thing_id').change(function() {
-    updateDatabox(this.value, '', '');
+    updateDatabox(this.value, data);
 });
 
-function updateDatabox(thing, data, created_at) {
+function updateDatabox(thing, data) {
     if (thing === 'Bottle') {
         $('#data_box').html(getDataBottle(data));
     }
     else if (thing === 'Nap') {
-        if (data === '') {
-            data = 'Edit this on wake up'
+        if (data['end_time'] === '') {
+            data['end_time'] = 'Edit this on wake up';
         }
-        if (created_at === '') {
-            var date = new Date();
-            created_at = date.toLocaleTimeString();
+        if (data['start_time'] === '') {
+            // var date = new Date();
+            // created_at = date.toLocaleTimeString();
+            data['start_time'] = makeDatetime();
         }
         $('#data_box').html(
-            '<label for="data">Start time:</label>'+
-            '<input readonly="readonly" type="text" id="start_time" name="start_time" value="' + created_at + '" class="form-control">'+
+            '<label for="start_time">Start time:</label>'+
+            '<input type="text" id="start_time" name="data[start_time]" value="' + data['start_time'] + '" class="form-control">'+
             '<br/>'+
-            '<label for="data">End time:</label>'+
-            '<input type="text" id="data" name="data" value="' + data + '" class="form-control">'
+            '<label for="end_time">End time:</label>'+
+            '<input type="text" id="end_time" name="data[end_time]" value="' + data['end_time'] + '" class="form-control">'+
+            '<input type="hidden" id="data" name="data[data]" value="" />'
         );
     }
     else if (thing === 'Nurse') {
@@ -59,11 +58,11 @@ function updateDatabox(thing, data, created_at) {
 }
 
 function getDataHidden() {
-    return '<input type="hidden" id="data" name="data" value="-1" />';
+    return '<input type="hidden" id="data" name="data[data]" value="" />';
 }
 
 function getDataBottle(ounces) {
-    var option_string = '<label for="data">Ounces:</label><select id="data" name="data" class="form-control">'+
+    var option_string = '<label for="data">Ounces:</label><select id="data" name="data[data]" class="form-control">'+
             '<option value="Add later">Add later</option>';
     for (i = 1; i < 10; i++) {
         var selected = '';
@@ -75,6 +74,21 @@ function getDataBottle(ounces) {
     option_string += '</select>';
 
     return option_string;
+}
+
+
+function makeDatetime() {
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    month = ('0' + month).slice(-2);
+    var day = ('0' + date.getDate()).slice(-2);
+    var hours = ('0' + date.getHours()).slice(-2);
+    var minutes = ('0' + date.getMinutes()).slice(-2);
+    var seconds = ('0' + date.getSeconds()).slice(-2);
+    datetime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+
+    return datetime;
 }
 
 
